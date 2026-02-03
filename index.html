@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>SewaRoom - Kost & Apartemen Eksklusif</title>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+   <style>
+      /* --- CSS VARIABLES & RESET --- */
+      :root {
+         --primary: #2563eb;
+         /* Biru Modern */
+         --primary-dark: #1e40af;
+         --secondary: #0f172a;
+         /* Gelap untuk Text */
+         --accent: #f59e0b;
+         /* Kuning untuk Highlight */
+         --bg-light: #f8fafc;
+         --white: #ffffff;
+         --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+         --transition: all 0.3s ease;
+      }
+
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: 'Poppins', sans-serif;
+         scroll-behavior: smooth;
+      }
+
+      body {
+         color: var(--secondary);
+         background-color: var(--bg-light);
+         line-height: 1.6;
+      }
+
+      a {
+         text-decoration: none;
+         color: inherit;
+      }
+
+      ul {
+         list-style: none;
+      }
+
+      /* --- NAVBAR --- */
+      nav {
+         background: rgba(255, 255, 255, 0.95);
+         padding: 1rem 5%;
+         position: fixed;
+         width: 100%;
+         top: 0;
+         z-index: 1000;
+         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         backdrop-filter: blur(10px);
+      }
+
+      .logo {
+         font-size: 1.5rem;
+         font-weight: 700;
+         color: var(--primary);
+      }
+
+      .nav-links {
+         display: flex;
+         gap: 2rem;
+      }
+
+      .nav-links a {
+         font-weight: 500;
+         transition: var(--transition);
+      }
+
+      .nav-links a:hover {
+         color: var(--primary);
+      }
+
+      .btn-cta {
+         background-color: var(--primary);
+         color: var(--white);
+         padding: 0.5rem 1.5rem;
+         border-radius: 50px;
+         font-weight: 600;
+         transition: var(--transition);
+      }
+
+      .btn-cta:hover {
+         background-color: var(--primary-dark);
+         transform: translateY(-2px);
+      }
+
+      /* Hamburger Menu (Mobile) */
+      .hamburger {
+         display: none;
+         cursor: pointer;
+         font-size: 1.5rem;
+      }
+
+      /* --- HERO SECTION --- */
+      .hero {
+         height: 100vh;
+         background: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)),
+            url('https://images.unsplash.com/photo-1522771753035-4848230d6f25?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+         background-size: cover;
+         background-position: center;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         text-align: center;
+         color: var(--white);
+         padding: 0 1rem;
+         margin-top: -60px;
+         /* Offset fixed nav */
+      }
+
+      .hero-content h1 {
+         font-size: 3.5rem;
+         margin-bottom: 1rem;
+         line-height: 1.2;
+      }
+
+      .hero-content p {
+         font-size: 1.2rem;
+         margin-bottom: 2rem;
+         opacity: 0.9;
+      }
+
+      /* --- FEATURES --- */
+      .features {
+         padding: 5rem 10%;
+         background: var(--white);
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+         gap: 2rem;
+         text-align: center;
+      }
+
+      .feature-card {
+         padding: 2rem;
+         border-radius: 12px;
+         background: var(--bg-light);
+         transition: var(--transition);
+      }
+
+      .feature-card:hover {
+         transform: translateY(-5px);
+         box-shadow: var(--shadow);
+      }
+
+      .icon {
+         font-size: 2.5rem;
+         margin-bottom: 1rem;
+         display: block;
+      }
+
+      /* --- ROOMS SECTION --- */
+      .rooms {
+         padding: 5rem 10%;
+      }
+
+      .section-title {
+         text-align: center;
+         margin-bottom: 3rem;
+      }
+
+      .section-title h2 {
+         font-size: 2.5rem;
+         color: var(--secondary);
+      }
+
+      .section-title p {
+         color: #64748b;
+      }
+
+      .rooms-grid {
+         display: grid;
+         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+         gap: 2rem;
+      }
+
+      .room-card {
+         background: var(--white);
+         border-radius: 16px;
+         overflow: hidden;
+         box-shadow: var(--shadow);
+         transition: var(--transition);
+      }
+
+      .room-card:hover {
+         transform: scale(1.02);
+         box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+
+      .room-img {
+         height: 200px;
+         width: 100%;
+         object-fit: cover;
+      }
+
+      .room-info {
+         padding: 1.5rem;
+      }
+
+      .room-price {
+         color: var(--primary);
+         font-size: 1.25rem;
+         font-weight: 700;
+         margin-bottom: 0.5rem;
+      }
+
+      .room-price span {
+         font-size: 0.9rem;
+         color: #64748b;
+         font-weight: 400;
+      }
+
+      .facilities-list {
+         margin: 1rem 0;
+         color: #64748b;
+         font-size: 0.9rem;
+      }
+
+      .facilities-list li {
+         display: inline-block;
+         margin-right: 10px;
+         background: #e2e8f0;
+         padding: 2px 8px;
+         border-radius: 4px;
+         margin-bottom: 5px;
+      }
+
+      .btn-outline {
+         display: block;
+         width: 100%;
+         padding: 0.8rem;
+         text-align: center;
+         border: 2px solid var(--primary);
+         color: var(--primary);
+         border-radius: 8px;
+         font-weight: 600;
+         transition: var(--transition);
+         margin-top: 1rem;
+         cursor: pointer;
+      }
+
+      .btn-outline:hover {
+         background: var(--primary);
+         color: var(--white);
+      }
+
+      /* --- FOOTER --- */
+      footer {
+         background: var(--secondary);
+         color: var(--white);
+         padding: 3rem 10%;
+         text-align: center;
+      }
+
+      .footer-links {
+         margin: 1.5rem 0;
+      }
+
+      .footer-links a {
+         margin: 0 10px;
+         opacity: 0.8;
+         transition: 0.2s;
+      }
+
+      .footer-links a:hover {
+         opacity: 1;
+         color: var(--accent);
+      }
+
+      /* --- RESPONSIVE CSS --- */
+      @media (max-width: 768px) {
+         .nav-links {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 70px;
+            right: 0;
+            width: 100%;
+            background: var(--white);
+            padding: 1rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+         }
+
+         .nav-links.active {
+            display: flex;
+         }
+
+         .hamburger {
+            display: block;
+         }
+
+         .hero-content h1 {
+            font-size: 2.5rem;
+         }
+      }
+   </style>
+</head>
+
+<body>
+
+   <nav>
+      <div class="logo">SewaRoom.</div>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+      <ul class="nav-links">
+         <li><a href="#home">Beranda</a></li>
+         <li><a href="#features">Fasilitas</a></li>
+         <li><a href="#rooms">Pilihan Kamar</a></li>
+         <li><a href="#contact" class="btn-cta">Hubungi Kami</a></li>
+      </ul>
+   </nav>
+
+   <section id="home" class="hero">
+      <div class="hero-content">
+         <h1>Temukan Kenyamanan<br>Seperti di Rumah</h1>
+         <p>Sewa kamar kost eksklusif & apartemen studio dengan fasilitas lengkap dan lokasi strategis.</p>
+         <a href="#rooms" class="btn-cta" style="padding: 1rem 2.5rem; font-size: 1.1rem;">Lihat Kamar Tersedia</a>
+      </div>
+   </section>
+
+   <section id="features" class="features">
+      <div class="feature-card">
+         <span class="icon">📍</span>
+         <h3>Lokasi Strategis</h3>
+         <p>Dekat dengan kampus, perkantoran, dan akses transportasi umum.</p>
+      </div>
+      <div class="feature-card">
+         <span class="icon">📶</span>
+         <h3>High-Speed WiFi</h3>
+         <p>Internet cepat up to 100Mbps cocok untuk WFH dan streaming.</p>
+      </div>
+      <div class="feature-card">
+         <span class="icon">🛡️</span>
+         <h3>Keamanan 24 Jam</h3>
+         <p>Dilengkapi CCTV dan penjagaan security 24 jam demi kenyamanan Anda.</p>
+      </div>
+      <div class="feature-card">
+         <span class="icon">🧹</span>
+         <h3>Layanan Kebersihan</h3>
+         <p>Free cleaning service seminggu sekali untuk menjaga kamar tetap bersih.</p>
+      </div>
+   </section>
+
+   <section id="rooms" class="rooms">
+      <div class="section-title">
+         <h2>Pilihan Kamar Favorit</h2>
+         <p>Pilih tipe kamar yang sesuai dengan kebutuhan dan budget Anda</p>
+      </div>
+
+      <div class="rooms-grid">
+         <div class="room-card">
+            <img
+               src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+               alt="Kamar Standard" class="room-img">
+            <div class="room-info">
+               <h3>Tipe Standard</h3>
+               <div class="room-price">Rp 1.500.000 <span>/ bulan</span></div>
+               <ul class="facilities-list">
+                  <li>AC</li>
+                  <li>Kasur Single</li>
+                  <li>Meja Belajar</li>
+                  <li>WiFi</li>
+               </ul>
+               <button class="btn-outline" onclick="bookRoom('Standard')">Pesan Sekarang</button>
+            </div>
+         </div>
+
+         <div class="room-card">
+            <img
+               src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+               alt="Kamar Deluxe" class="room-img">
+            <div class="room-info">
+               <h3>Tipe Deluxe</h3>
+               <div class="room-price">Rp 2.200.000 <span>/ bulan</span></div>
+               <ul class="facilities-list">
+                  <li>AC</li>
+                  <li>Kamar Mandi Dalam</li>
+                  <li>TV 32"</li>
+                  <li>Queen Bed</li>
+               </ul>
+               <button class="btn-outline" onclick="bookRoom('Deluxe')">Pesan Sekarang</button>
+            </div>
+         </div>
+
+         <div class="room-card">
+            <img
+               src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+               alt="Apartemen Studio" class="room-img">
+            <div class="room-info">
+               <h3>Studio Apartment</h3>
+               <div class="room-price">Rp 3.500.000 <span>/ bulan</span></div>
+               <ul class="facilities-list">
+                  <li>Full Furnished</li>
+                  <li>Kitchen Set</li>
+                  <li>Water Heater</li>
+                  <li>View Kota</li>
+               </ul>
+               <button class="btn-outline" onclick="bookRoom('Studio Apartment')">Pesan Sekarang</button>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <footer id="contact">
+      <div class="logo" style="margin-bottom: 1rem; color: white;">SewaRoom.</div>
+      <p>Jl. Jendral Sudirman No. 123, Jakarta Selatan</p>
+      <div class="footer-links">
+         <a href="#">Instagram</a>
+         <a href="#">WhatsApp</a>
+         <a href="#">Email</a>
+      </div>
+      <p style="font-size: 0.8rem; opacity: 0.6;">&copy; 2024 SewaRoom. Created via AI Generator.</p>
+   </footer>
+
+   <script>
+      // Toggle Mobile Menu
+      function toggleMenu() {
+         const navLinks = document.querySelector('.nav-links');
+         navLinks.classList.toggle('active');
+      }
+
+      // Simulasi Booking via WhatsApp
+      function bookRoom(type) {
+         // Ganti nomor ini dengan nomor WA bisnis kamu
+         const phoneNumber = "628123456789";
+         const message = `Halo Admin, saya tertarik untuk menyewa kamar tipe ${type}. Apakah masih tersedia?`;
+
+         // Encode URL agar spasi terbaca
+         const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+         // Buka di tab baru
+         window.open(url, '_blank');
+      }
+   </script>
+</body>
+
+</html>
